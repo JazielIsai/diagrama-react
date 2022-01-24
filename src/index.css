@@ -1,13 +1,73 @@
-body {
+*{
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  max-width: 100%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+.dndflow {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  height: 100%;
+  background-color: rgb(207, 214, 214);
+}
+
+.reactflow-wraper {
+  grid-column:  3 / 9;
+  height: 100%;
+}
+
+
+.asideLeft {
+  grid-column: 1 / 3;
+  height: 100%;
+
+}
+
+.asideLeft, .description {
+  padding: 1rem 0.5rem;
+}
+
+.asideLeft, .dndnode {
+  padding: 0.5rem;
+  border: 1px solid rgb(0, 0, 0);
+  cursor:grab;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.asideRight {
+
+  text-align: center;
+  grid-column: 9 / 11;
+  height: 100%;
+
+
+}
+
+.asideRight .description {
+  padding: 1rem 0.5rem;
+
+}
+
+.asideRight-right {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
