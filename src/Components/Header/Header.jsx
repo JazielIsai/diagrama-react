@@ -5,13 +5,13 @@ import File from './File';
 function Header (){
 
     return(
-        <Header className="header">
-            <div>
+        <header className="header">
+            <div className="header-menu">
                 <h2> 🔙 Go Back</h2>
                 <h1> Wflow name</h1>
                 <h2> Import / Export </h2>
             </div>
-            <div>
+            <div className="header-controls">
                 <Minimizar 
                     minLabel = {'Node Library'}
                 />
@@ -23,7 +23,7 @@ function Header (){
                 />
 
             </div>
-        </Header>
+        </header>
     )
 }
 

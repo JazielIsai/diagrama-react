@@ -1,5 +1,4 @@
 import React, { useState, useEffect }from "react";
-import Minimizar from './Minimizar';
 import DropDownMenus from './DropDownMenus';
 import DndNode from './DndNode';
 

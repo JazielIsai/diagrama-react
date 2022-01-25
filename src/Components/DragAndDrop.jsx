@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 
 import ReactFlow, { 
-    ReactFlowProvider,
     addEdge,
     MiniMap,
     isEdge,
@@ -9,10 +8,7 @@ import ReactFlow, {
     Controls
 } from 'react-flow-renderer';
 
-import SidebarLeft from './SildebarLeft';
-import SidebarRight from './SidebarRight';
-import Minimizar from './Minimizar';
-import Header from './Header';
+
 
 
 import ColorNode from './CustomNode/ColorNode';
@@ -22,7 +18,7 @@ import CheckBoxNode from './CustomNode/CheckboxNode';
 import SelectNode from './CustomNode/SelectorNode';
 //import ButtomNode from './CustomNode/'
 
-import TypeNode  from './CustomNode/CustomTypeNode';
+import TypeNode  from './PruebaCustomNode/CustomTypeNode';
 
 //import { onChange } from '../Helpers/NodeModific';
 
@@ -129,6 +125,7 @@ const ZoneDragAndDrop = () => {
           ),
         []
     );
+    
     //onLoad(reactFlowInstance): called after flow is initialized
     const onLoad = (_reactFlowInstance) => { 
         setReactFlowInstance(_reactFlowInstance)  
@@ -176,46 +173,38 @@ const ZoneDragAndDrop = () => {
     };
 
     return(
-        <div className="dndflow">
-            <ReactFlowProvider>
-                <SidebarLeft />
-                <div className="reactflow-wraper" ref = { ReactFlowWrapper }>
-                    <ReactFlow 
-                        elements={ elements }
-                        onElementClick={ onElementClick }
-                        onElementsRemove = { onElementsRemove }
-                        onConnect = { onConnect }
-                        onNodeDragStop = { onNodeDragStop }
 
-                        onLoad = { onLoad }
-                        onDrop = { onDrop }
-                        onDragOver = { onDragOver }
+        <div className="reactflow-wraper" ref = { ReactFlowWrapper }>
 
-                        style = { { background: bgColor } }
-                        nodeTypes = { nodeTypes }
-                        connectionLineStyle = { connectionLineStyle }
-                        snapToGrid = { true }
-                    >
+            <ReactFlow 
+                elements={ elements }
+                onElementClick={ onElementClick }
+                onElementsRemove = { onElementsRemove }
+                onConnect = { onConnect }
+                onNodeDragStop = { onNodeDragStop }
 
-                        <MiniMap
-                            nodeStrokeColor={(n) => {
-                            if (n.type === 'input') return '#0041d0';
-                            if (n.type === 'output') return '#ff0072';
-                            }}
-                            nodeColor={(n) => {
-                            if (n.type === 'selectorNode') return '#555';
-                            return '#fff';
-                            }}
-                        />
-                        <Controls />
-                    </ReactFlow>
+                onLoad = { onLoad }
+                onDrop = { onDrop }
+                onDragOver = { onDragOver }
 
-                </div>
-                <div className="sidebarRightAgrupado">
-                    <Minimizar minLabel = {'Node Properties'}/>
-                   <SidebarRight setElements ={ setElements } idComponente = { idComponente } />        
-                </div>
-            </ReactFlowProvider>
+                style = { { background: bgColor } }
+                nodeTypes = { nodeTypes }
+                connectionLineStyle = { connectionLineStyle }
+                snapToGrid = { true }
+            >
+
+                <MiniMap
+                    nodeStrokeColor={(n) => {
+                    if (n.type === 'input') return '#0041d0';
+                    if (n.type === 'output') return '#ff0072';
+                    }}
+                    nodeColor={(n) => {
+                    if (n.type === 'selectorNode') return '#555';
+                    return '#fff';
+                    }}
+                />
+                <Controls />
+            </ReactFlow>
 
         </div>
 

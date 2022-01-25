@@ -20,6 +20,49 @@ body,
 }
 
 
+.header{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 255, 0);
+    width: 100%;
+    height: 10%;
+
+}
+
+.header-menu, .header-controls{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  place-items: center;
+}
+
+.checkbox-NodeProperties,.checkbox-NodeLibrary {
+  width: 30px;
+}
+
+.checkbox-NodeLibrary:checked ~ .dndflow .asideLeft{
+  display: none;
+  width: 0;
+  
+}
+
+.minimizar{
+  cursor:pointer;
+  text-transform: uppercase;
+  width:30px;
+  /*writing-mode: vertical-lr;
+  position: absolute;
+  top: 4%;
+  transition: left 0.5s; */
+}
+
+.checkbox-NodeProperties:checked ~ .asideRight{
+  display: none;
+  width: 0;
+}
+
+
+
 .dndflow {
   display: flex;
   flex-direction: row;
@@ -27,13 +70,6 @@ body,
   
   height: 100%;
   background-color: rgb(207, 214, 214);
-}
-
-.header {
-  width: 100%;
-  padding: 2rem;
-  height: 10%;
-  background-color: rgb(255, 255, 0);
 }
 
 .reactflow-wraper {
@@ -83,7 +119,7 @@ body,
 }
 
 
-
+/*
 .sidebarRightAgrupado{
 
   width:20%;
@@ -91,24 +127,10 @@ body,
   display: flex;
   flex-direction: row;
 }
-
-
-#check{
-  width: 30px;
-}
-
-.minimizar{
-  cursor:pointer;
-  text-transform: uppercase;
-  width:30px;
-  writing-mode: vertical-lr;
-  position: absolute;
-  top: 4%;
-  transition: left 0.5s;
-}
-
+*/
 
 .asideRight {
+  width:20%;
   text-align: center;
   height: 100%;
 
@@ -143,10 +165,6 @@ body,
 }
 
 
-.sidebarRightAgrupado #check:checked ~ .asideRight{
-  display: none;
-  
-}
 
 
 
