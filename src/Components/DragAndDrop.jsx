@@ -11,8 +11,16 @@ import ReactFlow, {
 
 import SidebarLeft from './SildebarLeft';
 import SidebarRight from './SidebarRight';
+import Minimizar from './Minimizar';
+import Header from './Header';
+
 
 import ColorNode from './CustomNode/ColorNode';
+import RangeNode from './CustomNode/RangeNode';
+import TextNode from './CustomNode/TextNode';
+import CheckBoxNode from './CustomNode/CheckboxNode';
+import SelectNode from './CustomNode/SelectorNode';
+//import ButtomNode from './CustomNode/'
 
 import TypeNode  from './CustomNode/CustomTypeNode';
 
@@ -27,7 +35,12 @@ const connectionLineStyle = { stroke: '#fff'}
 
 
 const nodeTypes = {
-    color: ColorNode
+    color: ColorNode,
+    range: RangeNode,
+    text: TextNode,
+    checkbox: CheckBoxNode,
+    select: SelectNode
+
 } //TypeNode;
 
 
@@ -76,15 +89,15 @@ const ZoneDragAndDrop = () => {
         
         //setElements ( (els) => console.log(els) );
 
-        // setElements ( [
-        //     {
-        //       id: '1',
-        //       type: 'color',
-        //       data: { onChange: onChange, color: bgColor },
-        //       style: { border: '1px solid #777', padding: 10 },
-        //       position: { x: 100, y: 50 },
-        //     },
-        // ]);
+        setElements ( [
+            {
+              id: '1',
+              type: 'color',
+              data: { onChange: onChange, color: bgColor },
+              style: { border: '1px solid #777', padding: 10 },
+              position: { x: 100, y: 50 },
+            },
+        ]);
 
     }, []);
 
@@ -198,7 +211,10 @@ const ZoneDragAndDrop = () => {
                     </ReactFlow>
 
                 </div>
-                <SidebarRight setElements ={ setElements } idComponente = { idComponente } />        
+                <div className="sidebarRightAgrupado">
+                    <Minimizar minLabel = {'Node Properties'}/>
+                   <SidebarRight setElements ={ setElements } idComponente = { idComponente } />        
+                </div>
             </ReactFlowProvider>
 
         </div>

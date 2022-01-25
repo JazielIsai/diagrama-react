@@ -2,7 +2,13 @@ import React, { useState } from 'react'
 
 import { Handle, Position } from 'react-flow-renderer';
 
-function HandleEdge( { data, isConnectable, typeNode } ) {
+import CustomCheckBox from './CustomInput';
+
+function HandleEdge( { data, isConnectable } ) {
+
+  const [idInputCheckBox, setIdInputCheckBox] = useState('');
+  const [labelValue, setLabelValue] = useState('');
+
 
     const style = { background: '#555' }
     const styleA = { ...style, top: 10 }
@@ -21,12 +27,12 @@ function HandleEdge( { data, isConnectable, typeNode } ) {
             Custom Node: <strong>{data.color}</strong>
           </div>
           
-          <input
-            className="nodrag"
-            type = { typeNode } 
-            onChange={data.onChange}
-            defaultValue={data.color}
-          />
+          {
+            <CustomCheckBox 
+                
+            />
+
+          }
 
           <Handle
             type = "source"

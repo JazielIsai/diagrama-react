@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 
-function InputNode ( nameClass, { typeNode } ) {
-
+function InputNode ( { idInputCheckBox, labelValue } ) {
 
     return (
-        <input 
-            className = { nameClass }
-            type = { typeNode }
-            onChange = { (e) => e.target.value }
-            defaultValue = { 5 }
-
-
-        
-        />
+        <>
+            <input 
+                className = 'CheckBox'
+                type = 'checkbox'
+                id = { idInputCheckBox }
+                onChange = { (e) => e.target.value }
+                value = 'Hi, How are you?'
+                />
+            <label for= { idInputCheckBox } >
+                { labelValue }
+            </label>
+        </>
     )
 }
 

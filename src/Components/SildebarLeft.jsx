@@ -1,5 +1,6 @@
 import React, { useState, useEffect }from "react";
 import Minimizar from './Minimizar';
+import DropDownMenus from './DropDownMenus';
 import DndNode from './DndNode';
 
 
@@ -34,9 +35,6 @@ function SidebarLeft() {
 
     }, [] );
 
-
-
-
     const onDragStart = (event, nodeType) => {
         event.dataTransfer.setData('application/reactflow', nodeType);
         event.dataTransfer.effectAllowed = 'move';
@@ -45,13 +43,56 @@ function SidebarLeft() {
 
     return(
         <aside className= 'asideLeft'>
-            <Minimizar />
-            <p className= 'description'> You can drag and drop the nodes from here </p>
-            {
-                nodeType.map( types =>  {
-                    return <DndNode key={ types } onDragStart={ onDragStart } nodeType = { types } textNode = { types } />
-                })
-            }
+
+            <input
+                type='search'
+                placeholder='Search 🔍'
+                
+            />
+
+            <h3 className= 'description'>
+                You can drag and drop the nodes from here
+            </h3>
+
+            <DropDownMenus 
+                nameDetalist = { 'Files Nodes'  }
+                contentList = {
+                    nodeType.map( types =>  {
+                        return(
+                            <li key={ types } > 
+                                <DndNode 
+                                    key={ types } 
+                                    onDragStart={ onDragStart } 
+                                    nodeType = { types } 
+                                    textNode = { types } 
+                                /> 
+                            </li>
+
+                        ) 
+                    })
+                }
+            />
+            
+            <DropDownMenus 
+                nameDetalist = { 'Transforms'  }
+                contentList = { <li> Por ver </li> }
+            />
+
+            <DropDownMenus 
+                nameDetalist = { 'Plotting'  }
+                contentList = { <li> Por ver </li> }
+            />
+
+            <DropDownMenus 
+                nameDetalist = { 'Command Line'  }
+                contentList = { <li> Por ver </li> }
+            />
+
+            <DropDownMenus 
+                nameDetalist = { 'My Nodes'  }
+                contentList = { <li> Por ver </li> }
+            />
+
 
         </aside>
     )
@@ -61,6 +102,67 @@ export default SidebarLeft;
 
 
 /*
+            <details>
+                <summary 
+                    className= 'description'
+                > 
+                    Files Nodes  
+                </summary>
+                <ol className= 'nodesLibrary'>
+
+                    {
+                        nodeType.map( types =>  {
+                            return <li key={ types } > <DndNode key={ types } onDragStart={ onDragStart } nodeType = { types } textNode = { types } /> </li>
+                        })
+                    }
+                </ol>
+
+            </details>
+            <details>
+                <summary className= 'description'>
+                    Transforms
+                </summary>
+                <ol className= 'nodesLibrary'>
+                    <li>
+
+                    </li>
+                </ol>
+            </details>
+
+            <details>
+                <summary className= 'description'>
+                    Plotting
+                </summary>
+                <ol className='nodesLibrary'>
+                    <li>
+
+                    </li>
+                </ol>
+            </details>
+            <details>
+                <summary className= 'description'>
+                    Command Line
+                </summary>
+                <ol className= 'nodesLibrary'>
+                    <li>
+
+                    </li>
+                </ol>
+            </details>
+            <details>
+                <summary className= 'description'>
+                    My Nodes
+                </summary>
+                <ol className= 'nodesLibrary'>
+                    <li>
+
+                    </li>
+                </ol>
+            </details>
+
+
+
+
     <DndNode 
         onDragStart={ onDragStart } 
         nodeType = { typesNodes.input }

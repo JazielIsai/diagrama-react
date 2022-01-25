@@ -11,7 +11,7 @@ body,
 #root {
   margin: 0;
   padding: 0;
-  height: 100%;
+  height: 100vh;
 }
 
 #root {
@@ -19,43 +19,98 @@ body,
   flex-direction: column;
 }
 
+
 .dndflow {
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  
   height: 100%;
   background-color: rgb(207, 214, 214);
 }
 
+.header {
+  width: 100%;
+  padding: 2rem;
+  height: 10%;
+  background-color: rgb(255, 255, 0);
+}
+
 .reactflow-wraper {
-  grid-column:  3 / 9;
+
+  width: 60%;
   height: 100%;
 }
 
 
 .asideLeft {
-  grid-column: 1 / 3;
+  
+  width: 20%;
+
+  overflow: auto;
+  
   height: 100%;
 
 }
 
-.asideLeft, .description {
+.asideLeft details summary{
+  cursor: pointer;
+}
+
+.asideLeft .nodesLibrary {
+  cursor: grab;
+  
+}
+
+.asideLeft .nodesLibrary li{
+  list-style: none;
+
+  padding: 1.5em 1rem;
+
+}
+
+.asideLeft .description {
   padding: 1rem 0.5rem;
 }
 
-.asideLeft, .dndnode {
+.asideLeft .dndnode {
   padding: 0.5rem;
+  
   border: 1px solid rgb(0, 0, 0);
   cursor:grab;
   text-align: center;
   margin-bottom: 1rem;
 }
 
+
+
+.sidebarRightAgrupado{
+
+  width:20%;
+
+  display: flex;
+  flex-direction: row;
+}
+
+
+#check{
+  width: 30px;
+}
+
+.minimizar{
+  cursor:pointer;
+  text-transform: uppercase;
+  width:30px;
+  writing-mode: vertical-lr;
+  position: absolute;
+  top: 4%;
+  transition: left 0.5s;
+}
+
+
 .asideRight {
-
   text-align: center;
-  grid-column: 9 / 11;
   height: 100%;
-
 
 }
 
@@ -70,4 +125,29 @@ body,
   flex-direction: column;
   gap: 0.5rem;
 }
+
+.NodeProperties{
+  padding: 0.5rem;
+  text-align: justify;
+
+}
+
+.NodeProperties h3{
+  padding: 1rem 0;
+}
+
+.NodeProperties div{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+
+}
+
+
+.sidebarRightAgrupado #check:checked ~ .asideRight{
+  display: none;
+  
+}
+
+
+
 

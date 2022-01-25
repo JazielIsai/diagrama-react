@@ -1,14 +1,19 @@
 import React from 'react';
 
 
-function Minimizar() {
+function Minimizar( {minLabel} ) {
 
 
 
     return(
         <>
-            <p className="minimizar"> - </p>    
-        
+            <input 
+                type="checkbox"
+                id="check"
+                className = {`checkbox-${minLabel}`}
+            />
+            <label htmlFor='check' className="minimizar"> {minLabel} </label>    
+            
 
         </>
     )
