@@ -16,7 +16,7 @@ function Minimizar( {minLabel} ) {
                 htmlFor={`check-${ minLabel.replace(' ','') }`} 
                 className="minimizar"
             > 
-                {minLabel} 
+                { minLabel } 
             </label>    
             
 

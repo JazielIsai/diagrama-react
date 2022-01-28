@@ -1,10 +1,10 @@
-import DragAndDrop from './Components/DragAndDrop';
-
-import SidebarLeft from './Components/SidebarLeft/SildebarLeft';
-import SidebarRight from './Components/SidebarRight/SidebarRight';
-import Header from './Components/Header/Header';
-
 import  { ReactFlowProvider } from 'react-flow-renderer';
+
+import Header from './Components/Header/Header';
+import SidebarLeft from './Components/SidebarLeft/SildebarLeft';
+import DragAndDrop from './Components/DragAndDrop';
+//import SidebarRight from './Components/SidebarRight/SidebarRight';
+
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
                     
           <DragAndDrop />
                     
-          <SidebarRight />
+          {/* <SidebarRight /> */}
                   
         </ReactFlowProvider>
 

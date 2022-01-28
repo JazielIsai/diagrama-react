@@ -2,100 +2,73 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 
 import ReactFlow, { 
     addEdge,
-    MiniMap,
     isEdge,
     removeElements,
     Controls
 } from 'react-flow-renderer';
 
+import TypesNode from './CustomNode/TypesNode';
+import SidebarRight from './SidebarRight/SidebarRight';
+import MiniMapReactFlowRenderer from './MiniMapFlow/MiniMap';
+// import HandleOnChange from '../Helpers/NodeModific';
 
-
-
-import ColorNode from './CustomNode/ColorNode';
-import RangeNode from './CustomNode/RangeNode';
-import TextNode from './CustomNode/TextNode';
-import CheckBoxNode from './CustomNode/CheckboxNode';
-import SelectNode from './CustomNode/SelectorNode';
-//import ButtomNode from './CustomNode/'
-
-import TypeNode  from './PruebaCustomNode/CustomTypeNode';
-
-//import { onChange } from '../Helpers/NodeModific';
 
 const initColor = '#aaa';
 
 const onNodeDragStop = (event, node) => { console.log('drag stop',node); };
 
-
 const connectionLineStyle = { stroke: '#fff'}
 
 
-const nodeTypes = {
-    color: ColorNode,
-    range: RangeNode,
-    text: TextNode,
-    checkbox: CheckBoxNode,
-    select: SelectNode
-
-} //TypeNode;
+const nodeTypes = TypesNode();
 
 
 let id = 1;
 const getId = () => `dndnode${id++}`;
 
-const ZoneDragAndDrop = () => { 
+
+function ZoneDragAndDrop () { 
     //useRef returns a mutable ref object whose .current property is initialized to the passed argument (initialValue). The returned object will persist for the full lifetime of the component.
     const ReactFlowWrapper = useRef(null);
 
       //useState is a Hook that lets you add React state to function components
     const [ reactFlowInstance, setReactFlowInstance ] = useState(null);
 
-    const [ elements, setElements ] = useState([]);
+    const [ nodes, setNodes ] = useState( [ ] );
 
     const [bgColor, setBgColor] = useState(initColor);
 
     const [ idComponente, setIdComponente ] = useState('');
+
     
-
-
-    const onChange = (event) => {
-        setElements((els) =>
-          els.map((e) => {
-            if (isEdge(e) || e.id !== '1') {
-              return e;
-            }
+    // const onChange = (event) => {
+    //     setNodes((els) =>
+    //       els.map((e) => {
+    //         if (isEdge(e) || e.id !== 'dndnode1') {
+    //           return e;
+    //         }
   
-            const color = event.target.value;
-            console.log(color);
-            setBgColor(color);
+    //         const color = event.target.value;
+    //         console.log(color);
+    //         setBgColor(color);
   
-            return {
-              ...e,
-              data: {
-                ...e.data,
-                color,
-              },
-            };
-          })
-        );
-    };
+    //         return {
+    //           ...e,
+    //           data: {
+    //             ...e.data,
+    //             color,
+    //           },
+    //         };
+    //       })
+    //     );
+    // };
     
-    useEffect(() => {
-        onChange();
-        
-        //setElements ( (els) => console.log(els) );
+    // useEffect(() => {
+    //     // HandleOnChange(setNodes, setBgColor, isEdge);
+    //     onChange();
 
-        setElements ( [
-            {
-              id: '1',
-              type: 'color',
-              data: { onChange: onChange, color: bgColor },
-              style: { border: '1px solid #777', padding: 10 },
-              position: { x: 100, y: 50 },
-            },
-        ]);
 
-    }, []);
+    // }, []);
 
 
 
@@ -104,6 +77,7 @@ const ZoneDragAndDrop = () => {
         setIdComponente(id);
         // --> element.type = 'default'; // --> change the value of the component
         console.log('Evento Click', element, id, ' --- id --- ', idComponente);
+        
     }
 
     //The React useCallback Hook returns a memoized callback function.
@@ -112,7 +86,7 @@ const ZoneDragAndDrop = () => {
     //This is useful when passing callbacks to optimized child components that rely on reference equality to prevent unnecessary renders.
     const onElementsRemove = useCallback(
         (elementsToRemove)=> {
-            setElements( (els) => removeElements(elementsToRemove, els))
+            setNodes( (els) => removeElements(elementsToRemove, els))
         },
         []
     );
@@ -120,7 +94,7 @@ const ZoneDragAndDrop = () => {
     //onConnect({ source, target }): called when user connects two nodes
     const onConnect = useCallback (
         (params) =>
-          setElements((els) =>
+        setNodes((els) =>
             addEdge( { ...params, animated: false, style: connectionLineStyle }, els)
           ),
         []
@@ -145,8 +119,8 @@ const ZoneDragAndDrop = () => {
 
         if(reactFlowInstance) {
             const type = event.dataTransfer.getData('application/reactflow');
-            console.log(event);
-            console.log(event.dataTransfer.getData('application/reactflow'));
+            // console.log(event);
+            // console.log(event.dataTransfer.getData('application/reactflow'));
 
             const position = reactFlowInstance.project( {
                 x: event.clientX,
@@ -162,51 +136,49 @@ const ZoneDragAndDrop = () => {
                 style: { border: '1px solid black', padding: 10 },
                 data: { 
                     label: `${type}`, 
-                    onChange: onChange,
+                    //onChange: onChange,//HandleOnChange(setNodes, setBgColor, isEdge, event),
                     color: bgColor
                 }
             };
 
-            setElements( (els) => els.concat(newNode) );           
+            setNodes( (els) => els.concat(newNode) );           
 
         }
     };
 
     return(
+        <>
+            <div className="reactflow-wraper" ref = { ReactFlowWrapper }>
 
-        <div className="reactflow-wraper" ref = { ReactFlowWrapper }>
+                <ReactFlow
+                    elements={ nodes }
+                    onElementClick={ onElementClick }
+                    onElementsRemove = { onElementsRemove }
+                    onConnect = { onConnect }
+                    onNodeDragStop = { onNodeDragStop }
 
-            <ReactFlow 
-                elements={ elements }
-                onElementClick={ onElementClick }
-                onElementsRemove = { onElementsRemove }
-                onConnect = { onConnect }
-                onNodeDragStop = { onNodeDragStop }
+                    onLoad = { onLoad }
+                    onDrop = { onDrop }
+                    onDragOver = { onDragOver }
 
-                onLoad = { onLoad }
-                onDrop = { onDrop }
-                onDragOver = { onDragOver }
+                    style = { { background: bgColor } }
+                    nodeTypes = { nodeTypes }
+                    connectionLineStyle = { connectionLineStyle }
+                    snapToGrid = { true }
+                >
+                        
+                    <MiniMapReactFlowRenderer nodes={nodes} />
+                    <Controls />
+                </ReactFlow>
 
-                style = { { background: bgColor } }
-                nodeTypes = { nodeTypes }
-                connectionLineStyle = { connectionLineStyle }
-                snapToGrid = { true }
-            >
+            </div>
+            
 
-                <MiniMap
-                    nodeStrokeColor={(n) => {
-                    if (n.type === 'input') return '#0041d0';
-                    if (n.type === 'output') return '#ff0072';
-                    }}
-                    nodeColor={(n) => {
-                    if (n.type === 'selectorNode') return '#555';
-                    return '#fff';
-                    }}
-                />
-                <Controls />
-            </ReactFlow>
+            <SidebarRight   
+                idComponente = { idComponente }
 
-        </div>
+            />
+        </>
 
     )
 

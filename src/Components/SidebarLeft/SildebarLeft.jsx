@@ -12,7 +12,7 @@ const typesNodes = {
     range: 'range', 
     text: 'text', 
     textarea: 'textarea', 
-    button: 'button',
+    buttom: 'buttom',
     radio: 'radio',
     file: 'file',
 

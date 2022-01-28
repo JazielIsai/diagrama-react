@@ -36,8 +36,8 @@ body,
   place-items: center;
 }
 
-.checkbox-NodeProperties,.checkbox-NodeLibrary {
-  width: 30px;
+.checkbox-NodeProperties, .checkbox-NodeLibrary {
+  display: none;
 }
 
 .checkbox-NodeLibrary:checked ~ .dndflow .asideLeft{
@@ -49,7 +49,7 @@ body,
 .minimizar{
   cursor:pointer;
   text-transform: uppercase;
-  width:30px;
+  
   /*writing-mode: vertical-lr;
   position: absolute;
   top: 4%;

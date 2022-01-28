@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import InputSidebarRight from './InputSidebarRight';
+import ParamsSidebarRight from './ParamsSidebarRight';
+import DescriptionSidebarRight from './DescriptionSidebarRight';
 
 
 function SidebarRight( { setElements, idComponente } ){
@@ -11,6 +14,8 @@ function SidebarRight( { setElements, idComponente } ){
         console.log(event.target.value);
 
     }
+
+    
     const onClick = (e) => {
         e.preventDefault();
         //console.log(e)
@@ -32,6 +37,7 @@ function SidebarRight( { setElements, idComponente } ){
     return (
         <aside className="asideRight">
             <p className='description'> Modific the nodes </p>
+            <p> Node's ID is { id } </p>
             <div className='asideRight-right'>
                 <input 
                     type="text"
@@ -44,52 +50,18 @@ function SidebarRight( { setElements, idComponente } ){
                     onClick = { onClick }
                 />
             </div>
+            
+            <hr />
 
-            <div className='NodeProperties'>
-                <h3>Inputs</h3>
-                <div>
-                    <label htmlFor='input'> Seq1: </label>
-                    <select>
-                        <option value='' disabled > Select Text Input </option>
-                        <option value='Text Input 1'>Text Input 1</option>
-                        <option value='Text Input 2'>Text Input 2</option>
-                    </select>
-                    <label htmlFor='input'> Seq2: </label>
-                    <select>
-                        <option value='' disabled > Select Text Input </option>
-                        <option value='Text Input 1'>Text Input 1</option>
-                        <option value='Text Input 2'>Text Input 2</option>
-                    </select>
-
-                </div>
-            </div>
+            <InputSidebarRight />
+           
             <hr/>
 
-            <div className='NodeProperties'>
-                <h3>Params</h3>
-                <div>
-                    <label htmlFor=''> --format </label>
-                    <input
-                        type='text'
-                        placeholder='fasta'
-                    />
-                    <label htmlFor=''> --dir_path </label>
-                    <input
-                        type='text'
-                        placeholder=''
-                    />
-                </div>
-            </div>
+            <ParamsSidebarRight />
+
             <hr/>
 
-            <div className='NodeProperties'>
-                <h3>Description</h3>
-                <textarea
-                    rows={5}
-                >
-
-                </textarea>
-            </div>
+            <DescriptionSidebarRight />
 
         </aside>
     )
