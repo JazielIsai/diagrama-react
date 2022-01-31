@@ -174,10 +174,10 @@ function ZoneDragAndDrop () {
             </div>
             
 
-            <SidebarRight 
+            {/* <SidebarRight 
                 idComponente = { idComponente }
 
-            />
+            /> */}
         </>
 
     )
