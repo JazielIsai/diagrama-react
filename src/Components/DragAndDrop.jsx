@@ -9,7 +9,7 @@ import ReactFlow, {
 
 import TypesNode from './CustomNode/TypesNode';
 import SidebarRight from './SidebarRight/SidebarRight';
-import MiniMapReactFlowRenderer from './MiniMapFlow/MiniMap';
+import MiniMapReactFlow from './MiniMapFlow/MiniMap';
 // import HandleOnChange from '../Helpers/NodeModific';
 
 
@@ -167,14 +167,14 @@ function ZoneDragAndDrop () {
                     snapToGrid = { true }
                 >
                         
-                    <MiniMapReactFlowRenderer nodes={nodes} />
+                    <MiniMapReactFlow nodes={nodes} />
                     <Controls />
                 </ReactFlow>
 
             </div>
             
 
-            <SidebarRight   
+            <SidebarRight 
                 idComponente = { idComponente }
 
             />
