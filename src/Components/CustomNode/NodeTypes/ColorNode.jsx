@@ -5,16 +5,26 @@ import { Handle, Position } from 'react-flow-renderer';
 function ColorNode( { data, isConnectable } ) {
     return (
         <>
-          <Handle
-            type = "target"
-            position = {Position.Left}
-            style = { { background: '#555' } }
-            onConnect = { (params) => console.log('handle onConnect', params) }
-            isConnectable = { isConnectable }
+          <Handle 
+              type="target"
+              position = { Position.Left }
+              id="a"
+              style = { { top: 10, background: '#555' } }
+              onConnect = { (params) => console.log(params)}
+              isConnectable = { isConnectable }
+          />
+
+          <Handle 
+              type="target"
+              position = { Position.Left }
+              id="b"
+              style = { { bottom: 30, background: '#555' } }
+              onConnect = { (params) => console.log(params)}
+              isConnectable = { isConnectable }
           />
           
           <div>
-            Custom Node: <strong>{data.color}</strong>
+            Custom Node: <strong>{ data.label }</strong>
           </div>
           
           <input
@@ -24,20 +34,12 @@ function ColorNode( { data, isConnectable } ) {
             defaultValue={data.color}
           />
 
-          <Handle
-            type = "source"
-            position = { Position.Right }
-            id = "a"
-            style = { { top: 10, background: '#555' } }
-            isConnectable = { isConnectable }
-          />
-
-          <Handle
-            type = "source"
-            position = { Position.Right }
-            id = "b"
-            style = { { bottom: 20, background: '#555' } }
-            isConnectable = { isConnectable }
+          <Handle 
+                type="source"
+                position = { Position.Right }
+                id="c"
+                style = { { top: 10, background: '#555' } }
+                isConnectable = { isConnectable }
           />
         </>
       );

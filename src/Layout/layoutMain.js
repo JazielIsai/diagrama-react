@@ -38,7 +38,7 @@ export const json = {
         "children": [
           {
             "weight": 100,
-            enableDrag: false, 
+            enableDrag: true, 
             enableRename: false, 
             "enableClose": false,
             "type":"tab",

@@ -12,17 +12,27 @@ const CheckboxNode = ( { data, isConnectable } ) => {
     return(
         <>
             <Handle 
-                type = "target"
+                type="target"
                 position = { Position.Left }
-                style = { { style } }
-                onConnect = { (params) => console.log(params) }
+                id="a"
+                style = { { top: 10, background: '#555' } }
+                onConnect = { (params) => console.log(params)}
+                isConnectable = { isConnectable }
+            />
+
+            <Handle 
+                type="target"
+                position = { Position.Left }
+                id="b"
+                style = { { bottom: 30, background: '#555' } }
+                onConnect = { (params) => console.log(params)}
                 isConnectable = { isConnectable }
             />
             
             <div
                 
             >
-                Checkbox Node <strong>{ data.value } </strong>
+                Checkbox Node <strong>{ data.label } </strong>
             </div>
 
             <div >
@@ -35,18 +45,10 @@ const CheckboxNode = ( { data, isConnectable } ) => {
             </div>
 
             <Handle 
-                type = "source"
+                type="source"
                 position = { Position.Right }
-                id = "a"
-                style = { styleA }
-                isConnectable = { isConnectable }
-            />
-
-            <Handle  
-                type = "source"
-                position = { Position.Right }
-                id = "b"
-                style = { styleB }
+                id="c"
+                style = { { top: 10, background: '#555' } }
                 isConnectable = { isConnectable }
             />
         

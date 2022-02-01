@@ -29,12 +29,13 @@ function App() {
     else if (component === "SidebarLeft") {
       return <SidebarLeft />
     }
-    else if (component === "DragAndDrop"){
+    else if (component === "DragAndDrop") {
       return <DragAndDrop />
     }
-    else if (component === "SidebarRight"){
+    else if (component === "SidebarRight") {
       return <SidebarRight />
     }
+
   }
 
   return (

@@ -6,15 +6,26 @@ import { Handle, Position } from 'react-flow-renderer';
 const RangeNode = ({ data, isConnectable }) => {
   return (
     <>
-      <Handle
-        type = "target"
-        position = {Position.Left}
-        style = { { background: '#555' } }
-        onConnect = { (params) => console.log('handle onConnect', params) }
-        isConnectable = { isConnectable }
+      <Handle 
+          type="target"
+          position = { Position.Left }
+          id="a"
+          style = { { top: 10, background: '#555' } }
+          onConnect = { (params) => console.log(params)}
+          isConnectable = { isConnectable }
       />
+
+      <Handle 
+          type="target"
+          position = { Position.Left }
+          id="b"
+          style = { { bottom: 30, background: '#555' } }
+          onConnect = { (params) => console.log(params)}
+          isConnectable = { isConnectable }
+      />
+
       <div>
-        Custom Range Node: <strong>{data.value}</strong>
+        Custom Range Node: <strong> { data.label } </strong>
       </div>
       <input
         className = "nodrag"
@@ -22,20 +33,15 @@ const RangeNode = ({ data, isConnectable }) => {
         onChange = { data.value }
         defaultValue = { 5 }
       />
-      <Handle
-        type = "source"
-        position = { Position.Right }
-        id = "a"
-        style = { { top: 10, background: '#555' } }
-        isConnectable = { isConnectable }
+      
+      <Handle 
+          type="source"
+          position = { Position.Right }
+          id="c"
+          style = { { top: 10, background: '#555' } }
+          isConnectable = { isConnectable }
       />
-      <Handle
-        type = "source"
-        position = { Position.Right }
-        id = "b"
-        style = { { bottom: 10, background: '#555' } }
-        isConnectable = { isConnectable }
-      />
+
     </>
   );
 };
