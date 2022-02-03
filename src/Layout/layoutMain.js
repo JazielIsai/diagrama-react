@@ -2,33 +2,38 @@ import "flexlayout-react/style/dark.css";
 
 export const json = {
   global: {
-    tabEnableClose:false,
-    tabEnableFloat: false
+    "tabEnableClose":false,
+    "tabEnableFloat": false
   },
   borders:[
-      // {
-      //   "type": "border",
-      //   "location":"bottom",
-      //   "size": 100,
-      //   "children": [
-      //       {
-      //       "type": "tab",
-      //       "name": "Terminal",
-      //       "component": "text"
-      //       }
-      //     ]
-      // },
+      {
+        "type": "border",
+        "location":"top",
+        "size": 100,
+        "children": [
+            {
+            "enableDrag": false, 
+            "enableRename": false, 
+            "enableClose": false,
+            "type": "tab",
+            "name": "Menu",
+            "component": "text"
+            }
+          ]
+      },
       {
         "type": "border",
         "location":"left",
         "size": 300,
         "children": [
           {
+            "enableDrag": true, 
+            "enableRename": false, 
+            "enableClose": false,
             "type":"tab",
             "name": "Node Library",
             "component": "SidebarLeft"
           }
-          
         ]
       },
       {
@@ -38,8 +43,8 @@ export const json = {
         "children": [
           {
             "weight": 100,
-            enableDrag: true, 
-            enableRename: false, 
+            "enableDrag": true, 
+            "enableRename": false, 
             "enableClose": false,
             "type":"tab",
             "name": "Node Properties",
@@ -60,29 +65,15 @@ export const json = {
               "selected": 0,
               "children": [
                   {
+                      "enableDrag": true, 
+                      "enableRename": false, 
+                      "enableClose": false,
                       "type": "tab",
                       "name": "Diagram WorkFlow",
                       "component": "DragAndDrop"
                   }
               ]
           },
-          // {
-          //     "type": "tabset",
-          //     "weight": 50,
-          //     "selected": 0,
-          //     "children": [
-          //         {
-          //             "type": "tab",
-          //             "name": "Two",
-          //             "component": "text"
-          //         },
-          //         {
-          //             "type": "tab",
-          //             "name": "Three",
-          //             "component": "text"
-          //         }
-          //     ]
-          // }
       ]
   }
 };

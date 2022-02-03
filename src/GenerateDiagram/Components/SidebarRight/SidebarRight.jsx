@@ -7,6 +7,7 @@ import DescriptionSidebarRight from './DescriptionSidebarRight';
 function SidebarRight( { setElements, idComponente } ){
 
     const [ onChangeValue, setOnChangeValue ] = useState('');
+    const [ idComponent, setIdComponent ] = useState('');
     const id = idComponente;
 
     const onChange = (event) => {
@@ -15,20 +16,28 @@ function SidebarRight( { setElements, idComponente } ){
 
     }
 
-    
+    useEffect( () => {
+        const id = document.querySelectorAll('react-flow__node');
+        console.log('Hello ', id)
+
+        if(idComponent !== '') {
+
+        }
+
+    }, [])
     const onClick = (e) => {
         e.preventDefault();
-        //console.log(e)
+        console.log(e)
         //console.log(id)
-        if( onChangeValue.trim().length > 4 ) {
-            setElements( (els) => {
-                console.log(els, els[0].id)
-                if( els[0].id === id ) {
-                    console.log('id es: ',id, 'id es: ', els[0].id);
-                    //return els[0].data.label = onChangeValue;
-                }
-            })
-        }
+        // if( onChangeValue.trim().length > 4 ) {
+        //     setElements( (els) => {
+        //         console.log(els, els[0].id)
+        //         if( els[0].id === id ) {
+        //             console.log('id es: ',id, 'id es: ', els[0].id);
+        //             //return els[0].data.label = onChangeValue;
+        //         }
+        //     })
+        // }
 
     }
 

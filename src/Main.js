@@ -3,10 +3,10 @@ import  { ReactFlowProvider } from 'react-flow-renderer';
 import { Layout, Model, TabNode, IJsonModel } from 'flexlayout-react';
 import { json } from './Layout/layoutMain';
 
-import Header from './Components/Header/Header';
-import SidebarLeft from './Components/SidebarLeft/SildebarLeft';
-import DragAndDrop from './Components/DragAndDrop';
-import SidebarRight from './Components/SidebarRight/SidebarRight';
+import Header from './Header/Header';
+import SidebarLeft from './GenerateDiagram/Components/SidebarLeft/SildebarLeft';
+import DragAndDrop from './GenerateDiagram/Components/DragAndDropMain';
+import SidebarRight from './GenerateDiagram/Components/SidebarRight/SidebarRight';
 
 import 'flexlayout-react/style/dark.css';
 
