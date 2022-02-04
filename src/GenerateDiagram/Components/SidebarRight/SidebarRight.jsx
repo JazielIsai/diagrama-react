@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import InputSidebarRight from './InputSidebarRight';
 import ParamsSidebarRight from './ParamsSidebarRight';
 import DescriptionSidebarRight from './DescriptionSidebarRight';
 
+import { IdContext } from '../../../Hooks/IdNodeContext';
 
-function SidebarRight( { setElements, idComponente } ){
+function SidebarRight( /*{ setElements, idComponente }*/ ){
 
     const [ onChangeValue, setOnChangeValue ] = useState('');
-    const [ idComponent, setIdComponent ] = useState('');
-    const id = idComponente;
+    // const [ idComponent, setIdComponent ] = useState('');
+    // const id = idComponente;
+
+    const { idNode, setIdNode } = useContext(IdContext);
 
     const onChange = (event) => {
         setOnChangeValue(event.target.value);
@@ -16,15 +19,7 @@ function SidebarRight( { setElements, idComponente } ){
 
     }
 
-    useEffect( () => {
-        const id = document.querySelectorAll('react-flow__node');
-        console.log('Hello ', id)
-
-        if(idComponent !== '') {
-
-        }
-
-    }, [])
+ 
     const onClick = (e) => {
         e.preventDefault();
         console.log(e)
@@ -46,7 +41,8 @@ function SidebarRight( { setElements, idComponente } ){
     return (
         <aside className="asideRight">
             <p className='description'> Modific the nodes </p>
-            <p> Node's ID is { id } </p>
+            <p> Node's ID is { idNode } </p>
+            
             <div className='asideRight-right'>
                 <input 
                     type="text"
@@ -59,17 +55,12 @@ function SidebarRight( { setElements, idComponente } ){
                     onClick = { onClick }
                 />
             </div>
-            
+
             <hr />
-
             <InputSidebarRight />
-           
             <hr/>
-
             <ParamsSidebarRight />
-
             <hr/>
-
             <DescriptionSidebarRight />
 
         </aside>

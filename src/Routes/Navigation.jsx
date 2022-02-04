@@ -1,7 +1,7 @@
 import { BrowserRouter } from "react-router-dom";
 import { Routes, Route, NavLink, Navigate } from "react-router-dom";
 
-import { path } from '-';
+import { path } from './path';
 
 function Navigation(){
 
@@ -32,17 +32,17 @@ function Navigation(){
                 </nav>
 
                 <Routes>
-                        { 
-                            path.map( ( { path, Component } ) => (
-                                <Route 
-                                    key={ path }
-                                    path={ path }
-                                    element={ Component }
-                                />
-                            ) )
-                        }
+                    { 
+                        path.map( ( { path, Component } ) => (
+                            <Route 
+                                key={ path }
+                                path={ path }
+                                element={ Component }
+                            />
+                        ) )
+                    }
 
-                    <Route path = {'/*'} element = { <Navigate to='home' replace /> } />
+                    {/* <Route path = {'/*'} element = { <Navigate to='generate-diagram' replace /> } /> */}
                 </Routes>
 
             </div>
