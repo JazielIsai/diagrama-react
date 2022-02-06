@@ -6,7 +6,7 @@ export const useFetch = ( url ) =>{
     const isMounted = useRef(true);
     const [ stateData, setStateData ] = useState( {
         data: null,
-        loaded: true,
+        loading: true,
         error: null
     });
 
@@ -20,7 +20,7 @@ export const useFetch = ( url ) =>{
     useEffect( () => {
         setStateData({
             data: null,
-            loaded: true,
+            loading: true,
             error: null
         })
 
@@ -30,7 +30,7 @@ export const useFetch = ( url ) =>{
                 //if isMounted is mounted then made is:
                 if( isMounted.current ){
                     setStateData({
-                        loaded: false,
+                        loading: false,
                         error: null,
                         data: data
                     });
@@ -41,6 +41,6 @@ export const useFetch = ( url ) =>{
     }, [url] )
 
     return stateData;
-
+    
 }
 

@@ -2,6 +2,8 @@ import React, { useState, useEffect }from "react";
 import DropDownMenus from './DropDownMenus';
 import DndNode from './DndNode';
 
+import { useFetch } from '../../../Hooks/useFetch';
+
 
 const typesNodes = { 
     input: 'input', 
@@ -19,10 +21,18 @@ const typesNodes = {
 }
 
 function SidebarLeft() {
-
-    const [textNode, setTextNode ] = useState('node');
+    
+    
     const [nodeType, setNodeType ] = useState( [] );
+    const [ dataServices, setDataServices ] = useState( [ ] );
+    
+    const { data, loading } = useFetch('http://viperdb.scripps.edu/Lab/Workflow/nodes.php?serviceName=get_nodes');
+    
+    useEffect( () => {
 
+        setDataServices(data);
+    }, [data])
+    
     useEffect( () => {
         
         for(const nodes in typesNodes ) {
@@ -31,8 +41,10 @@ function SidebarLeft() {
             } );
             //console.log( nodes );
         }
-
+        
     }, [] );
+    
+    console.log( dataServices );
 
     const onDragStart = (event, nodeType) => {
         event.dataTransfer.setData('application/reactflow', nodeType);
@@ -46,7 +58,6 @@ function SidebarLeft() {
             <input
                 type='search'
                 placeholder='Search 🔍'
-                
             />
 
             <h3 className= 'description'>
@@ -72,10 +83,25 @@ function SidebarLeft() {
                 }
             />
             
-            <DropDownMenus 
-                nameDetalist = { 'Transforms'  }
-                contentList = { <li> Por ver </li> }
-            />
+            {
+                dataServices !== null && 
+                    <DropDownMenus 
+                        nameDetalist = { 'Transforms'  }
+                        contentList = { 
+                            dataServices.map ( (node) =>  (
+                                    <li key={node.idnode} >
+                                        <DndNode 
+                                            key={node.idnode}
+                                            onDragStart = { onDragStart }
+                                            nodeType = { node.type_node }
+                                            textNode = { node.name }
+                                        />
+                                    </li>
+                                ) 
+                            ) 
+                        }
+                    />
+            }
 
             <DropDownMenus 
                 nameDetalist = { 'Plotting'  }
@@ -99,97 +125,3 @@ function SidebarLeft() {
 
 export default SidebarLeft;
 
-
-/*
-            <details>
-                <summary 
-                    className= 'description'
-                > 
-                    Files Nodes  
-                </summary>
-                <ol className= 'nodesLibrary'>
-
-                    {
-                        nodeType.map( types =>  {
-                            return <li key={ types } > <DndNode key={ types } onDragStart={ onDragStart } nodeType = { types } textNode = { types } /> </li>
-                        })
-                    }
-                </ol>
-
-            </details>
-            <details>
-                <summary className= 'description'>
-                    Transforms
-                </summary>
-                <ol className= 'nodesLibrary'>
-                    <li>
-
-                    </li>
-                </ol>
-            </details>
-
-            <details>
-                <summary className= 'description'>
-                    Plotting
-                </summary>
-                <ol className='nodesLibrary'>
-                    <li>
-
-                    </li>
-                </ol>
-            </details>
-            <details>
-                <summary className= 'description'>
-                    Command Line
-                </summary>
-                <ol className= 'nodesLibrary'>
-                    <li>
-
-                    </li>
-                </ol>
-            </details>
-            <details>
-                <summary className= 'description'>
-                    My Nodes
-                </summary>
-                <ol className= 'nodesLibrary'>
-                    <li>
-
-                    </li>
-                </ol>
-            </details>
-
-
-
-
-    <DndNode 
-        onDragStart={ onDragStart } 
-        nodeType = { typesNodes.input }
-        textNode = { typesNodes.input }
-    />
-    <DndNode 
-        onDragStart={ onDragStart } 
-        nodeType = { typesNodes.default }
-        textNode = { typesNodes.default }
-    />
-    <DndNode 
-        onDragStart={ onDragStart } 
-        nodeType = { typesNodes.output }
-        textNode = { typesNodes.output }
-    />
-    <DndNode 
-        onDragStart={ onDragStart } 
-        nodeType = { typesNodes.color }
-        textNode = { typesNodes.color }
-    />
-    <DndNode 
-        onDragStart={ onDragStart } 
-        nodeType = { typesNodes.select }
-        textNode = { typesNodes.select }
-    />
-    <DndNode 
-        onDragStart={ onDragStart } 
-        nodeType = { typesNodes.range }
-        textNode = { typesNodes.range }
-    />
-*/
