@@ -70,8 +70,30 @@ function SidebarLeft() {
                 You can drag and drop the nodes from here
             </h3>
 
-                            
             {
+                dataServices !== null &&
+                    dataServices.map( (node) => (
+                        <DropDownMenus 
+                            key={node.idnode}
+                            nameDetalist = { node.category }
+                            contentList = {
+                                dataServices.map( (nodeData) => (
+                                    <li key={nodeData.idnode} >
+                                        <DndNode 
+                                            key={nodeData.idnode}
+                                            onDragStart = { onDragStart }
+                                            nodeType = { nodeData.type_node }
+                                            textNode = { nodeData.name }
+                                        />
+                                    </li>
+                                ) )
+                            }
+                        
+                        />
+                    ) )
+            }
+                  
+            {/* {
                 dataServices !== null && 
                     <DropDownMenus 
                         nameDetalist = { 'Transforms'  }
@@ -89,7 +111,7 @@ function SidebarLeft() {
                             ) 
                         }
                     />
-            } 
+            } */}
 
             
             <DropDownMenus 
