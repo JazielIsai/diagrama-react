@@ -28,9 +28,14 @@ function SidebarLeft() {
     
     const { data, loading } = useFetch('http://viperdb.scripps.edu/Lab/Workflow/nodes.php?serviceName=get_nodes');
     
+    const [ category, setCategory ] = useState( [ ] );
+
     useEffect( () => {
 
         setDataServices(data);
+       
+        // setCategory( [ ...new Set( data.map( els =>  els.category ) )] ); 
+        
     }, [data])
     
     useEffect( () => {
@@ -45,6 +50,7 @@ function SidebarLeft() {
     }, [] );
     
     console.log( dataServices );
+    console.log( category )
 
     const onDragStart = (event, nodeType) => {
         event.dataTransfer.setData('application/reactflow', nodeType);
@@ -64,25 +70,7 @@ function SidebarLeft() {
                 You can drag and drop the nodes from here
             </h3>
 
-            <DropDownMenus 
-                nameDetalist = { 'Files Nodes'  }
-                contentList = {
-                    nodeType.map( types =>  {
-                        return(
-                            <li key={ types } > 
-                                <DndNode 
-                                    key={ types } 
-                                    onDragStart={ onDragStart } 
-                                    nodeType = { types } 
-                                    textNode = { types } 
-                                /> 
-                            </li>
-
-                        ) 
-                    })
-                }
-            />
-            
+                            
             {
                 dataServices !== null && 
                     <DropDownMenus 
@@ -101,9 +89,29 @@ function SidebarLeft() {
                             ) 
                         }
                     />
-            }
+            } 
 
+            
             <DropDownMenus 
+                nameDetalist = { 'Files Nodes'  }
+                contentList = {
+                    nodeType.map( types =>  {
+                        return(
+                            <li key={ types } > 
+                                <DndNode 
+                                    key={ types } 
+                                    onDragStart={ onDragStart } 
+                                    nodeType = { types } 
+                                    textNode = { types } 
+                                /> 
+                            </li>
+
+                        ) 
+                    })
+                }
+            />
+
+            {/* <DropDownMenus 
                 nameDetalist = { 'Plotting'  }
                 contentList = { <li> Por ver </li> }
             />
@@ -116,7 +124,7 @@ function SidebarLeft() {
             <DropDownMenus 
                 nameDetalist = { 'My Nodes'  }
                 contentList = { <li> Por ver </li> }
-            />
+            /> */}
 
 
         </aside>

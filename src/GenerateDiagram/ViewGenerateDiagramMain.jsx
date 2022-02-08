@@ -3,6 +3,7 @@ import  { ReactFlowProvider } from 'react-flow-renderer';
 import { Layout, Model, TabNode, IJsonModel } from 'flexlayout-react';
 import { json } from '../Layout/layoutMain';
 
+import Header from '../Header/Header';
 import SidebarLeft from './Components/SidebarLeft/SildebarLeft';
 import DragAndDrop from './Components/DragAndDropMain';
 import SidebarRight from './Components/SidebarRight/SidebarRight';
@@ -25,8 +26,10 @@ function ViewGenerateDiagramMain() {
     // console.log(node);
 
     let component = node.getComponent();
-    
-    if (component === "SidebarLeft") {
+    if(component === "Header"){ 
+      return <Header />;
+    }
+    else if (component === "SidebarLeft") {
       return <SidebarLeft />
     }
     else if (component === "DragAndDrop") {

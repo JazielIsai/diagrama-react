@@ -11,7 +11,7 @@ export const json = {
             location: 'bottom',
             selected: 0,
             enableDrop: true,
-            size: 300,
+            size: 200,
             children: [
                 {
                     type: 'tab',
@@ -27,12 +27,24 @@ export const json = {
         },
         {
             type: 'border',
+            location: 'left',
+            size: 300,
+            children: [
+                {
+                    type: 'tab',
+                    name: 'Carpetas',
+                    component: ''
+                }
+            ]
+        },
+        {
+            type: 'border',
             location: 'right',
             size: 300,
             children: [
                 {
                     type: 'tab',
-                    name: '',
+                    name: 'Input Data',
                     component: ''
                 }
             ]
@@ -57,4 +69,4 @@ export const json = {
             }
         ]
     }
-}
+  }

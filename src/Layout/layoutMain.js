@@ -12,12 +12,12 @@ export const json = {
         "size": 100,
         "children": [
             {
-            "enableDrag": false, 
-            "enableRename": false, 
-            "enableClose": false,
-            "type": "tab",
-            "name": "Menu",
-            "component": "text"
+              "enableDrag": false, 
+              "enableRename": false, 
+              "enableClose": false,
+              "type": "tab",
+              "name": "Menu",
+              "component": "Header"
             }
           ]
       },
@@ -65,12 +65,12 @@ export const json = {
               "selected": 0,
               "children": [
                   {
-                      "enableDrag": true, 
-                      "enableRename": false, 
-                      "enableClose": false,
-                      "type": "tab",
-                      "name": "Diagram WorkFlow",
-                      "component": "DragAndDrop"
+                    "enableDrag": true, 
+                    "enableRename": false, 
+                    "enableClose": false,
+                    "type": "tab",
+                    "name": "Diagram WorkFlow",
+                    "component": "DragAndDrop"
                   }
               ]
           },

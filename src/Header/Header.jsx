@@ -1,8 +1,7 @@
 import React from 'react';
-import Minimizar from './Minimizar';
 import File from './File';
 
-function Header (){
+function Header () {
 
     return(
         <header className="header">
@@ -12,15 +11,13 @@ function Header (){
                 <h2> Import / Export </h2>
             </div>
             <div className="header-controls">
-                <Minimizar 
-                    minLabel = {'Node Library'}
-                />
+
+
                 <File 
 
                 />
-                <Minimizar 
-                    minLabel = {'Node Properties'}
-                />
+                
+ 
 
             </div>
         </header>
